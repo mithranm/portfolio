@@ -1,6 +1,6 @@
 // portfolio/components/ProjectCard.tsx
 import Image from 'next/image';
-import Link from 'next/link'; // Import Link
+import Link from 'next/link';
 import type { ProjectData } from '@/lib/projects';
 import ScreenshotImage from './ScreenshotImage';
 
@@ -17,7 +17,8 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   const projectPageUrl = `/projects/${project.slug}`;
 
   return (
-    <article className="bg-white dark:bg-neutral-800 shadow-lg rounded-lg overflow-hidden transition-all hover:shadow-xl flex flex-col group">
+    // FIX: Apply hover effects and transitions to the entire card
+    <article className="bg-white dark:bg-neutral-800 shadow-lg rounded-lg overflow-hidden transition-all duration-300 ease-in-out hover:shadow-xl hover:scale-105 flex flex-col group">
       <Link href={projectPageUrl} className="block">
         {/* Image container - 16:9 Aspect Ratio */}
         <div className="relative w-full bg-neutral-200 dark:bg-neutral-700" style={{ paddingBottom: '56.25%' }}>
@@ -30,7 +31,8 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                 alt={project.imageAlt}
                 fill
                 style={{ objectFit: 'cover' }}
-                className="dark:brightness-90 group-hover:scale-105 transition-transform duration-300 ease-in-out"
+                // FIX: Removed the scale effect from the image itself
+                className="dark:brightness-90" 
                 sizes="(max-width: 767px) 100vw, 50vw"
                 priority={project.order <= 2}
               />
@@ -72,7 +74,6 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
           {project.tags && project.tags.length > 0 && (
             <div className={`pt-3 ${project.projectUrl && project.projectUrl !== "#" ? 'border-t' : ''} border-neutral-200 dark:border-neutral-700`}>
-              {/* <h4 className="text-xs font-semibold text-neutral-500 dark:text-neutral-400 mb-2">TAGS</h4> Remove if tags are self-explanatory */}
               <div className="flex flex-wrap gap-2">
                 {project.tags.map((tag) => (
                   <span

@@ -1,7 +1,7 @@
 ---
 title: "CatGPT - A Cat-Like AI Assistant"
 summary: "An AI chatbot that roleplays as my cat, Molly, using Retrieval Augmented Generation."
-image: "https://mithran.org/images/MollyAI.png"
+image: "/images/MollyAI.png"
 imageAlt: "CatGPT - A Cat-Like AI Assistant"
 order: 2
 projectUrl: "https://github.com/mithranm/catgpt"

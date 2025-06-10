@@ -1,7 +1,7 @@
 ---
 title: "Dot Product in Video Games"
 summary: "A YouTube video explaining the application of the dot product for NPC field of view in game development."
-image: "https://mithran.org/images/zombiefov90degrees.png"
+image: "/images/zombiefov90degrees.png"
 imageAlt: "Dot Product in Video Games Illustration"
 order: 3
 projectUrl: "https://youtu.be/mB-S07g6BKU"

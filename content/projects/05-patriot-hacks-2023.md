@@ -1,7 +1,7 @@
 ---
 title: "PatriotHacks 2023 Winner - HoneyCar"
 summary: "Our team's winning submission for the PatriotHacks 2023 hackathon."
-image: "https://mithran.org/images/honeycar.jpeg"
+image: "/images/honeycar.jpeg"
 imageAlt: "HoneyCar project display"
 order: 4
 projectUrl: "https://devpost.com/software/honeycar"
