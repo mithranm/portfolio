@@ -3,7 +3,7 @@ title: "S2SAlchemy: Offline Speech-to-Speech Translation"
 summary: "A deep dive into speech-to-speech (S2S) translation, culminating in S2SAlchemy, a modular pipeline I developed to run entirely offline on consumer hardware like an iPad."
 image: "/images/s2salchemy.png"
 imageAlt: "Demonstration of S2SAlchemy translating an English quote to Mandarin"
-order: 5
+order: 4
 projectUrl: "https://docs.google.com/document/d/1uJeKufqz0bwICVl9XAIDhgQJ146TrlVQRaWQlDkX528/edit?usp=sharing"
 tags: ["AI", "Machine Translation", "S2S", "TTS", "ASR", "iOS", "Offline First"]
 ---

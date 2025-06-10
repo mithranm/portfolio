@@ -3,8 +3,8 @@ title: "Predicting GitHub Issue Resolution Time"
 summary: "An in-depth analysis of a machine learning system designed to predict the resolution time of GitHub issues, exploring feature importance, model performance, and architectural challenges."
 image: "/images/github-issue-analysis.png"
 imageAlt: "Analysis of a system to predict GitHub issue resolution times"
-order: 6
-projectUrl: "/projects/06-github-issue-analysis"
+order: 3
+projectUrl: "/githubissues.html"
 tags: ["Machine Learning", "Data Science", "Python", "XGBoost", "Data Analysis"]
 ---
 

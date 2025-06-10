@@ -3,7 +3,7 @@ title: "Dot Product in Video Games"
 summary: "A YouTube video explaining the application of the dot product for NPC field of view in game development."
 image: "/images/zombiefov90degrees.png"
 imageAlt: "Dot Product in Video Games Illustration"
-order: 3
+order: 6
 projectUrl: "https://youtu.be/mB-S07g6BKU"
 tags: ["Game Development", "Mathematics", "Linear Algebra", "Roblox"]
 ---

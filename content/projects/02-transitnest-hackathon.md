@@ -3,7 +3,7 @@ title: "Patriot Hacks 2024 Winner - TransitNest"
 summary: "A hackathon-winning web application that helps users find affordable housing near public transportation by aggregating Zillow data and visualizing it on an interactive map."
 image: "/images/transitnest.png"
 imageAlt: "Screenshot of the TransitNest application"
-order: 7
+order: 2
 projectUrl: "https://devpost.com/software/transitnest"
 tags: ["Hackathon", "React", "FastAPI", "Google Maps API", "Python", "AWS"]
 ---
