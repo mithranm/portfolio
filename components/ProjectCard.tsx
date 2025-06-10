@@ -1,11 +1,12 @@
 // components/ProjectCard.tsx
+'use client'; // This must be a Client Component to use the router hook.
+
 import Image from 'next/image';
-import Link from 'next/link';
+import { useRouter } from 'next/navigation'; // Import the Next.js router
 import type { ProjectData } from '@/lib/projects';
 import ScreenshotImage from './ScreenshotImage';
 import type { MouseEvent, TouchEvent } from 'react';
 
-// onMouseLeave is no longer needed here
 interface ProjectCardProps {
   project: ProjectData;
   onMouseEnter: (e: MouseEvent<HTMLElement>) => void;
@@ -14,21 +15,34 @@ interface ProjectCardProps {
 }
 
 export default function ProjectCard({ project, onMouseEnter, onClick, onTouchStart }: ProjectCardProps) {
+  const router = useRouter(); // Get the router instance
   const isDynamicScreenshot = project.image.startsWith('dynamic-screenshot:');
   const dynamicScreenshotUrl = isDynamicScreenshot
     ? project.image.substring('dynamic-screenshot:'.length)
     : '';
-
   const projectPageUrl = `/projects/${project.slug}`;
+
+  // This combined handler triggers the hitmarker effect AND navigates.
+  const handleCardClick = () => {
+    onClick(); // Fire the hitmarker effect from the parent.
+    router.push(projectPageUrl); // Navigate to the project page.
+  };
+  
+  // This combined handler is for mobile tap.
+  const handleCardTap = (e: TouchEvent<HTMLElement>) => {
+    onTouchStart(e); // Fire the hitmarker effect.
+    router.push(projectPageUrl); // Navigate to the project page.
+  };
 
   return (
     <article
-      className="project-card group"
+      className="project-card group cursor-pointer" // Add cursor-pointer for better UX
       onMouseEnter={onMouseEnter}
-      onClick={onClick}
-      onTouchStart={onTouchStart}
+      onClick={handleCardClick} // Use the combined desktop click handler
+      onTouchStart={handleCardTap} // Use the combined mobile tap handler
     >
-      <Link href={projectPageUrl} className="block relative z-[2]">
+      {/* The content is no longer wrapped in individual <Link> tags. */}
+      <div className="relative z-[2]">
         <div className="project-card-image-wrapper">
           <div className="absolute inset-0">
             {isDynamicScreenshot ? (
@@ -50,14 +64,13 @@ export default function ProjectCard({ project, onMouseEnter, onClick, onTouchSta
             )}
           </div>
         </div>
-      </Link>
+      </div>
 
       <div className="p-5 md:p-6 flex flex-col flex-grow relative z-[2] bg-card-bg">
-        <Link href={projectPageUrl} className="block mb-2">
-          <h2 className="text-xl sm:text-2xl font-bold transition-colors duration-300">
-            {project.title}
-          </h2>
-        </Link>
+        {/* The title is now a simple <h2>, not a link. */}
+        <h2 className="text-xl sm:text-2xl font-bold transition-colors duration-300 mb-2">
+          {project.title}
+        </h2>
 
         {project.summary && (
           <p className="text-base text-foreground/70 mb-4 flex-grow">
