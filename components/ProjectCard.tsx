@@ -1,14 +1,19 @@
-// portfolio/components/ProjectCard.tsx
+// components/ProjectCard.tsx
 import Image from 'next/image';
 import Link from 'next/link';
 import type { ProjectData } from '@/lib/projects';
 import ScreenshotImage from './ScreenshotImage';
+import type { MouseEvent, TouchEvent } from 'react';
 
+// onMouseLeave is no longer needed here
 interface ProjectCardProps {
   project: ProjectData;
+  onMouseEnter: (e: MouseEvent<HTMLElement>) => void;
+  onClick: () => void;
+  onTouchStart: (e: TouchEvent<HTMLElement>) => void;
 }
 
-export default function ProjectCard({ project }: ProjectCardProps) {
+export default function ProjectCard({ project, onMouseEnter, onClick, onTouchStart }: ProjectCardProps) {
   const isDynamicScreenshot = project.image.startsWith('dynamic-screenshot:');
   const dynamicScreenshotUrl = isDynamicScreenshot
     ? project.image.substring('dynamic-screenshot:'.length)
@@ -17,11 +22,14 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   const projectPageUrl = `/projects/${project.slug}`;
 
   return (
-    // FIX: Apply hover effects and transitions to the entire card
-    <article className="bg-white dark:bg-neutral-800 shadow-lg rounded-lg overflow-hidden transition-all duration-300 ease-in-out hover:shadow-xl hover:scale-105 flex flex-col group">
-      <Link href={projectPageUrl} className="block">
-        {/* Image container - 16:9 Aspect Ratio */}
-        <div className="relative w-full bg-neutral-200 dark:bg-neutral-700" style={{ paddingBottom: '56.25%' }}>
+    <article
+      className="project-card group"
+      onMouseEnter={onMouseEnter}
+      onClick={onClick}
+      onTouchStart={onTouchStart}
+    >
+      <Link href={projectPageUrl} className="block relative z-[2]">
+        <div className="project-card-image-wrapper">
           <div className="absolute inset-0">
             {isDynamicScreenshot ? (
               <ScreenshotImage targetUrl={dynamicScreenshotUrl} altText={project.imageAlt} />
@@ -31,59 +39,43 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                 alt={project.imageAlt}
                 fill
                 style={{ objectFit: 'cover' }}
-                // FIX: Removed the scale effect from the image itself
-                className="dark:brightness-90" 
+                className="project-card-image"
                 sizes="(max-width: 767px) 100vw, 50vw"
                 priority={project.order <= 2}
               />
             ) : (
               <div className="flex items-center justify-center h-full">
-                <p className="text-neutral-500 dark:text-neutral-400">No Image</p>
+                <p className="text-foreground/50">No Image</p>
               </div>
             )}
           </div>
         </div>
       </Link>
 
-      {/* Text Content Area */}
-      <div className="p-5 md:p-6 flex flex-col flex-grow">
-        <Link href={projectPageUrl} className="block mb-2 group">
-          <h2 className="text-xl sm:text-2xl font-bold text-neutral-800 dark:text-neutral-100 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+      <div className="p-5 md:p-6 flex flex-col flex-grow relative z-[2] bg-card-bg">
+        <Link href={projectPageUrl} className="block mb-2">
+          <h2 className="text-xl sm:text-2xl font-bold transition-colors duration-300">
             {project.title}
           </h2>
         </Link>
 
         {project.summary && (
-          <p className="text-sm sm:text-base text-neutral-600 dark:text-neutral-300 mb-4 flex-grow"> {/* flex-grow to take up space before tags/link */}
+          <p className="text-base text-foreground/70 mb-4 flex-grow">
             {project.summary}
           </p>
         )}
         
-        {/* Links and Tags - Pushed to bottom */}
-        <div className="mt-auto pt-2">
-          {project.projectUrl && project.projectUrl !== "#" && (
-             <a
-              href={project.projectUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block mb-3 text-sm text-blue-600 dark:text-blue-400 hover:underline font-medium"
-            >
-              View Source / Demo →
-            </a>
-          )}
-
+        <div className="mt-auto pt-4">
           {project.tags && project.tags.length > 0 && (
-            <div className={`pt-3 ${project.projectUrl && project.projectUrl !== "#" ? 'border-t' : ''} border-neutral-200 dark:border-neutral-700`}>
-              <div className="flex flex-wrap gap-2">
-                {project.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="px-2.5 py-1 bg-neutral-100 dark:bg-neutral-700 text-neutral-700 dark:text-neutral-200 rounded-md text-xs sm:text-sm font-medium"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
+            <div className="flex flex-wrap gap-2">
+              {project.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="px-2.5 py-1 bg-border/10 text-foreground/80 rounded-sm text-xs font-mono uppercase"
+                >
+                  {tag}
+                </span>
+              ))}
             </div>
           )}
         </div>

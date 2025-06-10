@@ -1,13 +1,12 @@
 // portfolio/components/ScreenshotImage.tsx
-'use client'; // This marks the component as a Client Component
+'use client';
 
 import React, { useState, useEffect, useCallback } from 'react';
-import Image from 'next/image'; // We can use Next/Image for placeholder/loading states
 
 const SCREENSHOT_API_BASE_URL = 'https://screenshot.mithran.org';
 
 interface ScreenshotImageProps {
-  targetUrl: string; // The URL to screenshot
+  targetUrl: string;
   altText: string;
 }
 
@@ -38,7 +37,6 @@ const ScreenshotImage: React.FC<ScreenshotImageProps> = ({ targetUrl, altText })
       }
       const data = await response.json();
       if (data.image) {
-        // Assuming data.image is a relative path like /static/screenshot.png
         const fullImageUrl = data.image.startsWith('http') ? data.image : `${SCREENSHOT_API_BASE_URL}${data.image}`;
         setImageUrl(fullImageUrl);
       } else {
@@ -60,13 +58,12 @@ const ScreenshotImage: React.FC<ScreenshotImageProps> = ({ targetUrl, altText })
     fetchScreenshot();
   };
 
-  // Container for 16:9 aspect ratio
   const aspectRatioContainerStyle: React.CSSProperties = {
     position: 'relative',
     width: '100%',
-    paddingBottom: '56.25%', // 16:9 aspect ratio (9 / 16 * 100)
-    backgroundColor: 'var(--neutral-200)', // Light placeholder background
-    borderRadius: '0.5rem', // Match card rounding if image is at the top
+    paddingBottom: '56.25%',
+    backgroundColor: 'var(--neutral-200)',
+    borderRadius: '0.5rem',
     overflow: 'hidden',
   };
   
@@ -76,7 +73,7 @@ const ScreenshotImage: React.FC<ScreenshotImageProps> = ({ targetUrl, altText })
     left: 0,
     width: '100%',
     height: '100%',
-    objectFit: 'cover', // Or 'contain' depending on preference
+    objectFit: 'cover',
   };
 
   if (loading) {
@@ -123,18 +120,17 @@ const ScreenshotImage: React.FC<ScreenshotImageProps> = ({ targetUrl, altText })
 
   return (
     <div style={aspectRatioContainerStyle}>
-      {/* Using a regular img tag here for client-side fetched image */}
       <img
         src={imageUrl}
         alt={altText}
         style={imageStyle}
         className="dark:brightness-90"
       />
-      {/* Optional: Add a small refresh button overlayed on the image */}
+      {/* FIX: Moved button to the top-right corner to avoid the clip-path */}
       <button
         onClick={handleRefresh}
         title="Refresh Screenshot"
-        className="absolute bottom-2 right-2 bg-black/50 text-white p-1.5 rounded-full hover:bg-black/70 transition-opacity opacity-50 hover:opacity-100 text-xs"
+        className="absolute top-2 right-2 bg-black/50 text-white p-1.5 rounded-full hover:bg-black/70 transition-opacity opacity-50 hover:opacity-100 text-xs"
         style={{ lineHeight: '1' }}
       >
         <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 16 16">

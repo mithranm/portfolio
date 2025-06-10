@@ -1,44 +1,39 @@
 // portfolio/app/page.tsx
-import { getSortedProjectsData, ProjectData } from '@/lib/projects'; // Adjust path based on tsconfig
-import ProjectCard from '@/components/ProjectCard'; // Adjust path based on tsconfig
+// This is a Server Component. No 'use client' here.
 
-// FIX: Removed unnecessary async
+import { getSortedProjectsData, ProjectData } from '@/lib/projects';
+import ProjectGrid from '@/components/ProjectGrid';
+import HeaderControls from '@/components/HeaderControls';
+
 export default function HomePage() {
   const allProjectsData: ProjectData[] = getSortedProjectsData();
 
   return (
-    <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
-      <header className="mb-12 text-center">
-        <h1 className="text-4xl sm:text-5xl font-bold text-neutral-900 dark:text-neutral-50">
-          Mithran Mohanraj
-        </h1>
-        <p className="mt-3 text-lg sm:text-xl text-neutral-600 dark:text-neutral-300 max-w-2xl mx-auto">
-          Welcome to my portfolio. Here are some of the projects I've worked on.
-        </p>
-      </header>
+    <>
+      <HeaderControls />
 
-      <main>
-        {allProjectsData.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
-            {allProjectsData.map((project) => (
-              <ProjectCard key={project.slug} project={project} />
-            ))}
-          </div>
-        ) : (
-          <p className="text-center text-neutral-500 dark:text-neutral-400">
-            No projects to display yet.
+      {/* The main container gets a higher z-index to render on top of the crosshair */}
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+        <header className="mb-20 text-center">
+          <h1
+            className="glitch-text text-4xl sm:text-6xl lg:text-7xl font-bold"
+            data-text="Mithran Mohanraj"
+          >
+            Mithran Mohanraj
+          </h1>
+          <p className="mt-6 text-lg sm:text-xl text-foreground/70 max-w-2xl mx-auto uppercase tracking-widest">
+            I build things for the web and explore the frontiers of AI.
           </p>
-        )}
-      </main>
+        </header>
 
-      <footer className="text-center mt-16 pt-8 pb-4 border-t border-neutral-200 dark:border-neutral-700">
-        <p className="text-sm text-neutral-600 dark:text-neutral-400">
-          © {new Date().getFullYear()} Mithran Mohanraj. All rights reserved.
-        </p>
-        <p className="text-xs text-neutral-500 dark:text-gray-500 mt-1">
-          Built with Next.js & Tailwind CSS. Hosted on Cloudflare Pages.
-        </p>
-      </footer>
-    </div>
+        <ProjectGrid projects={allProjectsData} />
+
+        <footer className="text-center mt-24 pt-8 pb-4">
+          <p className="text-xs text-foreground/50 uppercase tracking-widest">
+            © {new Date().getFullYear()} Mithran Mohanraj
+          </p>
+        </footer>
+      </div>
+    </>
   );
 }
