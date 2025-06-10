@@ -1,5 +1,6 @@
 # Other
 codebase_snapshot.md
+pyproject.toml
 
 # dependencies
 /node_modules
