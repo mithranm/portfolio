@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import ScreenshotImage from '@/components/ScreenshotImage'; // Import if needed for project page images
+import ScreenshotImage from '@/components/ScreenshotImage';
 
 // For static site generation
 export async function generateStaticParams() {
@@ -14,10 +14,10 @@ export async function generateStaticParams() {
 }
 
 // For dynamic metadata
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const resolvedParams = await params; // Await params
-  const { slug } = resolvedParams; // Destructure slug from the resolved object
-  const project = getProjectData(slug); // Use destructured slug
+// FIX: Type `params` as a Promise that resolves to the object with the slug.
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params; // Await the params promise to get the object
+  const project = getProjectData(slug);
 
   if (!project) {
     return {
@@ -31,22 +31,15 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     openGraph: {
         title: `${project.title} - Mithran Mohanraj`,
         description: project.summary,
-        images: project.image.startsWith('dynamic-screenshot:') || project.image.startsWith('http') ? [project.image] : [`/images/${project.image}`], // Adjust path if needed
+        images: project.image.startsWith('dynamic-screenshot:') || project.image.startsWith('http') ? [project.image] : [`/images/${project.image}`],
     }
   };
 }
 
-
-interface ProjectPageProps {
-  params: {
-    slug: string;
-  };
-}
-
-export default async function ProjectPage({ params }: ProjectPageProps) {
-  const resolvedParams = await params; // Await params
-  const { slug } = resolvedParams; // Destructure slug from the resolved object
-  const project = getProjectData(slug); // Use destructured slug
+// FIX: Type `params` as a Promise here as well. The component remains async.
+export default async function ProjectPage({ params }: { params: Promise<{ slug:string }> }) {
+  const { slug } = await params; // Await the params promise to get the object
+  const project = getProjectData(slug);
 
   if (!project) {
     return (
@@ -81,10 +74,9 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         )}
       </header>
 
-      {/* Optional: Display image on project page */}
       {project.image && (
         <div className="mb-8 md:mb-12 rounded-lg overflow-hidden shadow-lg">
-          <div className="relative w-full bg-neutral-200 dark:bg-neutral-700" style={{ paddingBottom: '56.25%' /* 16:9 Aspect Ratio */ }}>
+          <div className="relative w-full bg-neutral-200 dark:bg-neutral-700" style={{ paddingBottom: '56.25%' }}>
             <div className="absolute inset-0">
               {isDynamicScreenshot ? (
                 <ScreenshotImage targetUrl={dynamicScreenshotUrl} altText={project.imageAlt} />
@@ -95,8 +87,8 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                   fill
                   style={{ objectFit: 'cover' }}
                   className="dark:brightness-90"
-                  sizes="100vw" // Image can take full width of its container
-                  priority // Prioritize image on individual project page
+                  sizes="100vw"
+                  priority
                 />
               ) : null}
             </div>
@@ -105,7 +97,6 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       )}
       
       <main className="prose prose-lg dark:prose-invert max-w-none mx-auto text-neutral-800 dark:text-neutral-200">
-        {/* Apply .markdown-content for consistent styling from globals.css */}
         <div className="markdown-content"> 
           <ReactMarkdown remarkPlugins={[remarkGfm]}>
             {project.content}

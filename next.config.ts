@@ -2,7 +2,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  output: 'export',
+  output: 'export', // Configures Next.js for static site generation.
+                     // Static assets in the 'public' directory will be served from the root.
   images: {
     unoptimized: true, // ESSENTIAL for static export
     remotePatterns: [

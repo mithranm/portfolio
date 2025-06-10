@@ -2,7 +2,8 @@
 import { getSortedProjectsData, ProjectData } from '@/lib/projects'; // Adjust path based on tsconfig
 import ProjectCard from '@/components/ProjectCard'; // Adjust path based on tsconfig
 
-export default async function HomePage() {
+// FIX: Removed unnecessary async
+export default function HomePage() {
   const allProjectsData: ProjectData[] = getSortedProjectsData();
 
   return (
@@ -11,14 +12,14 @@ export default async function HomePage() {
         <h1 className="text-4xl sm:text-5xl font-bold text-neutral-900 dark:text-neutral-50">
           Mithran Mohanraj
         </h1>
-        <p className="mt-3 text-lg sm:text-xl text-neutral-600 dark:text-neutral-300 max-w-2xl mx-auto"> {/* Increased text size here too */}
+        <p className="mt-3 text-lg sm:text-xl text-neutral-600 dark:text-neutral-300 max-w-2xl mx-auto">
           Welcome to my portfolio. Here are some of the projects I've worked on.
         </p>
       </header>
 
       <main>
         {allProjectsData.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10"> {/* 1 col mobile, 2 cols tablet+, increased gap */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
             {allProjectsData.map((project) => (
               <ProjectCard key={project.slug} project={project} />
             ))}

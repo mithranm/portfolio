@@ -14,9 +14,20 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://mithran.org'), // Replace with your actual production domain
+  metadataBase: new URL('https://mithran.org'),
   title: "Mithran Mohanraj - Portfolio",
   description: "Portfolio of Mithran Mohanraj showcasing projects and skills.",
+  icons: {
+    icon: [
+      { url: '/logo512.png', type: 'image/png', sizes: '512x512' }
+    ],
+    apple: [
+      { url: '/logo512.png', type: 'image/png', sizes: '512x512' }
+    ],
+    shortcut: [
+      { url: '/logo512.png', type: 'image/png' }
+    ]
+  },
 };
 
 export default function RootLayout({
