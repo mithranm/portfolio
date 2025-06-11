@@ -5,7 +5,7 @@ image: "/images/s2salchemy.png"
 imageAlt: "Demonstration of S2SAlchemy translating an English quote to Mandarin"
 order: 4
 projectUrl: "https://docs.google.com/document/d/1uJeKufqz0bwICVl9XAIDhgQJ146TrlVQRaWQlDkX528/edit?usp=sharing"
-tags: ["AI", "Machine Translation", "S2S", "TTS", "ASR", "iOS", "Offline First"]
+tags: ["AI", "Machine Translation", "S2S", "TTS", "ASR", "iOS", "Offline"]
 ---
 
 This project explores the challenges and breakthroughs in modern translation technology, arguing for the superiority of a modular pipeline approach for preserving a speaker's intent and prosody.

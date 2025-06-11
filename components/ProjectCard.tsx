@@ -1,47 +1,74 @@
 // components/ProjectCard.tsx
-'use client'; // This must be a Client Component to use the router hook.
+'use client';
 
 import Image from 'next/image';
-import { useRouter } from 'next/navigation'; // Import the Next.js router
+import { useRouter } from 'next/navigation';
 import type { ProjectData } from '@/lib/projects';
 import ScreenshotImage from './ScreenshotImage';
+import { useRef } from 'react';
 import type { MouseEvent, TouchEvent } from 'react';
 
 interface ProjectCardProps {
   project: ProjectData;
   onMouseEnter: (e: MouseEvent<HTMLElement>) => void;
-  onClick: () => void;
-  onTouchStart: (e: TouchEvent<HTMLElement>) => void;
+  onMouseLeave: (e: MouseEvent<HTMLElement>) => void;
+  onClick: (e: MouseEvent<HTMLElement>) => void;
+  onTap: (e: TouchEvent<HTMLElement>) => void;
 }
 
-export default function ProjectCard({ project, onMouseEnter, onClick, onTouchStart }: ProjectCardProps) {
-  const router = useRouter(); // Get the router instance
+export default function ProjectCard({ project, onMouseEnter, onMouseLeave, onClick, onTap }: ProjectCardProps) {
+  const router = useRouter();
   const isDynamicScreenshot = project.image.startsWith('dynamic-screenshot:');
   const dynamicScreenshotUrl = isDynamicScreenshot
     ? project.image.substring('dynamic-screenshot:'.length)
     : '';
   const projectPageUrl = `/projects/${project.slug}`;
 
-  // This combined handler triggers the hitmarker effect AND navigates.
-  const handleCardClick = () => {
-    onClick(); // Fire the hitmarker effect from the parent.
+  // Refs to manage touch vs. scroll detection
+  const touchStartPos = useRef({ x: 0, y: 0 });
+  const isDragging = useRef(false);
+
+  // This handler is for desktop clicks.
+  const handleCardClick = (e: MouseEvent<HTMLElement>) => {
+    onClick(e); // Fire the hitmarker effect from the parent, passing the event.
     router.push(projectPageUrl); // Navigate to the project page.
   };
   
-  // This combined handler is for mobile tap.
-  const handleCardTap = (e: TouchEvent<HTMLElement>) => {
-    onTouchStart(e); // Fire the hitmarker effect.
-    router.push(projectPageUrl); // Navigate to the project page.
+  // Touch event handlers to distinguish a tap from a scroll on mobile
+  const handleTouchStart = (e: TouchEvent<HTMLElement>) => {
+    touchStartPos.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+    isDragging.current = false;
+  };
+
+  const handleTouchMove = (e: TouchEvent<HTMLElement>) => {
+    if (isDragging.current) return;
+    
+    const dx = Math.abs(e.touches[0].clientX - touchStartPos.current.x);
+    const dy = Math.abs(e.touches[0].clientY - touchStartPos.current.y);
+
+    if (dx > 10 || dy > 10) {
+      isDragging.current = true;
+    }
+  };
+
+  const handleTouchEnd = (e: TouchEvent<HTMLElement>) => {
+    if (!isDragging.current) {
+      onTap(e); // Use the onTap prop to fire the hitmarker effect.
+      router.push(projectPageUrl);
+    }
+    isDragging.current = false;
   };
 
   return (
     <article
-      className="project-card group cursor-pointer" // Add cursor-pointer for better UX
+      className="project-card group cursor-pointer"
       onMouseEnter={onMouseEnter}
-      onClick={handleCardClick} // Use the combined desktop click handler
-      onTouchStart={handleCardTap} // Use the combined mobile tap handler
+      onMouseLeave={onMouseLeave} // Added for consistent hover effect
+      onClick={handleCardClick}   // Now passes the event
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
     >
-      {/* The content is no longer wrapped in individual <Link> tags. */}
       <div className="relative z-[2]">
         <div className="project-card-image-wrapper">
           <div className="absolute inset-0">
@@ -67,7 +94,6 @@ export default function ProjectCard({ project, onMouseEnter, onClick, onTouchSta
       </div>
 
       <div className="p-5 md:p-6 flex flex-col flex-grow relative z-[2] bg-card-bg">
-        {/* The title is now a simple <h2>, not a link. */}
         <h2 className="text-xl sm:text-2xl font-bold transition-colors duration-300 mb-2">
           {project.title}
         </h2>

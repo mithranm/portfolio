@@ -5,7 +5,7 @@ image: "dynamic-screenshot:github.com/mithranm"
 imageAlt: "Dynamic screenshot of this portfolio website"
 order: 1
 projectUrl: "https://github.com/mithranm/portfolio"
-tags: ["Next.js", "React", "Tailwind CSS", "Portfolio", "Dynamic Screenshot"]
+tags: ["Next.js", "React", "Tailwind CSS", "Portfolio", "Puppeteer"]
 ---
 
 This portfolio website is built using modern web technologies to be fast, responsive, and easily maintainable.
