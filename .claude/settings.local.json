@@ -11,6 +11,9 @@
       "Read(/C:\\Users\\mithr\\Documents\\portfolio\\content\\projects/**)",
       "Read(/C:\\Users\\mithr\\Documents\\portfolio\\content\\projects/**)",
       "Read(/C:\\Users\\mithr\\Documents\\portfolio\\app/**)",
+      "Read(/C:\\Users\\mithr\\Documents\\portfolio\\app/**)",
+      "Read(/C:\\Users\\mithr\\Documents\\portfolio\\app/**)",
+      "Read(/C:\\Users\\mithr\\Documents\\portfolio\\app/**)",
       "Read(/C:\\Users\\mithr\\Documents\\portfolio\\app/**)"
     ],
     "deny": [],

@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   description: "Software Engineer specializing in AI/ML systems, enterprise security, and cloud architecture. Currently at Lumbra Inc. building multi-LLM orchestration pipelines.",
   openGraph: {
     title: "Mithran Mohanraj - Software Engineer",
-    description: "Software Engineer specializing in AI/ML systems, enterprise security, and cloud architecture. Experience with Fortune 500 companies.",
+    description: "Software Engineer specializing in AI/ML systems, enterprise security, and cloud architecture.",
     images: [
       {
         url: '/images/mitmo.png',

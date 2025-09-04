@@ -80,7 +80,7 @@ export default function HomePage() {
                   S2S Alchemy Paper
                 </a>
               </h3>
-              <p className="text-foreground/80 mb-4">Research • Academic Publication</p>
+              <p className="text-foreground/80 mb-4">Class Research Project</p>
               <p className="text-foreground/60 mb-4 text-sm">
                 Research project focused on realtime speech translation on mobile devices without internet connectivity
               </p>
