@@ -16,11 +16,11 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://mithran.org'),
-  title: "Mithran Mohanraj - Portfolio",
-  description: "Portfolio of Mithran Mohanraj showcasing projects and skills.",
+  title: "Mithran Mohanraj - Software Engineer",
+  description: "Software Engineer specializing in AI/ML systems, enterprise security, and cloud architecture. Currently at Lumbra Inc. building multi-LLM orchestration pipelines.",
   openGraph: {
-    title: "Mithran Mohanraj - Portfolio",
-    description: "A portfolio showcasing projects in web development, AI, and more.",
+    title: "Mithran Mohanraj - Software Engineer",
+    description: "Software Engineer specializing in AI/ML systems, enterprise security, and cloud architecture. Experience with Fortune 500 companies.",
     images: [
       {
         url: '/images/mitmo.png',
@@ -31,8 +31,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: "Mithran Mohanraj - Portfolio",
-    description: "A portfolio showcasing projects in web development, AI, and more.",
+    title: "Mithran Mohanraj - Software Engineer",
+    description: "Software Engineer specializing in AI/ML systems, enterprise security, and cloud architecture.",
     images: ['/images/mitmo.png'],
   },
   icons: {
