@@ -1,7 +1,6 @@
 // portfolio/app/layout.tsx
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { SettingsProvider } from "@/contexts/SettingsContext";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -60,7 +59,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} font-sans`}
       >
-        <SettingsProvider>{children}</SettingsProvider>
+        {children}
       </body>
     </html>
   );

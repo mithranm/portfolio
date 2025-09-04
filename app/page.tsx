@@ -1,69 +1,202 @@
-// portfolio/app/page.tsx
-// This is a Server Component. No 'use client' here.
-
-import { getSortedProjectsData, ProjectData } from '@/lib/projects';
-import ProjectGrid from '@/components/ProjectGrid';
-import HeaderControls from '@/components/HeaderControls';
-
+// Minimal Portfolio Page - Hackathons & Projects Focus
 export default function HomePage() {
-  const allProjectsData: ProjectData[] = getSortedProjectsData();
-
   return (
-    <>
-      <HeaderControls />
-
-      {/* The main container gets a higher z-index to render on top of the crosshair */}
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
-        <header className="mb-20 text-center">
-          <h1
-            className="glitch-text text-4xl sm:text-6xl lg:text-7xl font-bold"
-            data-text="Mithran Mohanraj"
-          >
+    <div className="min-h-screen bg-background text-foreground">
+      {/* Main Content */}
+      <main className="container mx-auto px-4 py-16 max-w-4xl">
+        {/* Header Section */}
+        <header className="text-center mb-16">
+          <h1 className="glitch-text text-4xl md:text-6xl font-bold mb-4" data-text="Mithran Mohanraj">
             Mithran Mohanraj
           </h1>
-          <p className="mt-6 text-lg sm:text-xl text-foreground/70 max-w-2xl mx-auto uppercase tracking-widest">
-            Software Engineer | AI/ML Systems | Enterprise Security
+          <p className="text-xl md:text-2xl text-foreground/80 mb-6 uppercase tracking-wider">
+            Software Engineer
           </p>
-          
-          <div className="mt-8 text-base text-foreground/60 max-w-3xl mx-auto">
-            <p className="mb-4">
-              Software Engineer with expertise in AI/ML systems, cloud architecture, and full-stack development. 
-              Currently at Lumbra Inc. building multi-LLM orchestration pipelines and zero trust security infrastructure.
-            </p>
-            <p className="mb-4">
-              Experience with Fortune 500 companies in data privacy, scalable web applications, and automated research workflows.
-              Previously at Peraton Inc. and Karsun Solutions developing enterprise-grade systems.
-            </p>
-            <div className="flex flex-wrap justify-center gap-4 mt-6 text-sm uppercase tracking-wider">
-              <span className="px-3 py-1 border border-foreground/20">Python</span>
-              <span className="px-3 py-1 border border-foreground/20">PyTorch</span>
-              <span className="px-3 py-1 border border-foreground/20">AWS</span>
-              <span className="px-3 py-1 border border-foreground/20">React</span>
-              <span className="px-3 py-1 border border-foreground/20">Next.js</span>
-              <span className="px-3 py-1 border border-foreground/20">Zero Trust</span>
-            </div>
-            <div className="flex justify-center gap-6 mt-8 text-sm uppercase tracking-wider">
-              <a href="mailto:mithran.mohanraj@gmail.com" className="hover:text-accent transition-colors border-b border-transparent hover:border-foreground">
-                Email
-              </a>
-              <a href="https://linkedin.com/in/mithran-mohanraj" target="_blank" className="hover:text-accent transition-colors border-b border-transparent hover:border-foreground">
-                LinkedIn
-              </a>
-              <a href="https://github.com/mithranm" target="_blank" className="hover:text-accent transition-colors border-b border-transparent hover:border-foreground">
-                GitHub
-              </a>
-            </div>
-          </div>
+          <p className="text-lg text-foreground/60 max-w-2xl mx-auto leading-relaxed">
+            Computer Science student at George Mason University. Building AI systems, winning hackathons, 
+            and creating innovative software solutions.
+          </p>
         </header>
 
-        <ProjectGrid projects={allProjectsData} />
+        {/* Projects Section */}
+        <section className="mb-16">
+          <h2 className="text-2xl font-bold mb-8 uppercase tracking-wider border-b border-foreground/20 pb-2">
+            Featured Projects
+          </h2>
+          
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="border border-foreground/20 p-6">
+              <h3 className="text-xl font-semibold mb-2">
+                <a 
+                  href="https://devpost.com/software/transitnest" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="hover:text-accent transition-colors"
+                >
+                  TransitNest
+                </a>
+              </h3>
+              <p className="text-foreground/80 mb-4">🏆 Hackathon Winner • Transportation Innovation</p>
+              <p className="text-foreground/60 mb-4 text-sm">
+                Real-time transit optimization platform connecting riders with available transportation. 
+                Built with React, Node.js, and real-time APIs.
+              </p>
+              <div className="flex flex-wrap gap-2 text-xs">
+                <span className="px-2 py-1 bg-foreground/10 border border-foreground/20">React</span>
+                <span className="px-2 py-1 bg-foreground/10 border border-foreground/20">Node.js</span>
+                <span className="px-2 py-1 bg-foreground/10 border border-foreground/20">APIs</span>
+              </div>
+            </div>
 
-        <footer className="text-center mt-24 pt-8 pb-4">
-          <p className="text-xs text-foreground/50 uppercase tracking-widest">
-            © {new Date().getFullYear()} Mithran Mohanraj
-          </p>
-        </footer>
-      </div>
-    </>
+            <div className="border border-foreground/20 p-6">
+              <h3 className="text-xl font-semibold mb-2">
+                <a 
+                  href="/githubissues.html" 
+                  className="hover:text-accent transition-colors"
+                >
+                  GitHub Issue Analysis
+                </a>
+              </h3>
+              <p className="text-foreground/80 mb-4">Machine Learning • Data Analysis</p>
+              <p className="text-foreground/60 mb-4 text-sm">
+                Predictive system for GitHub issue resolution times using machine learning. 
+                Analyzes repository patterns and contributor behavior.
+              </p>
+              <div className="flex flex-wrap gap-2 text-xs">
+                <span className="px-2 py-1 bg-foreground/10 border border-foreground/20">Python</span>
+                <span className="px-2 py-1 bg-foreground/10 border border-foreground/20">ML</span>
+                <span className="px-2 py-1 bg-foreground/10 border border-foreground/20">GitHub API</span>
+              </div>
+            </div>
+
+            <div className="border border-foreground/20 p-6">
+              <h3 className="text-xl font-semibold mb-2">
+                <a 
+                  href="https://docs.google.com/document/d/1uJeKufqz0bwICVl9XAIDhgQJ146TrlVQRaWQlDkX528/edit?usp=sharing" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="hover:text-accent transition-colors"
+                >
+                  S2S Alchemy Paper
+                </a>
+              </h3>
+              <p className="text-foreground/80 mb-4">Research • Academic Publication</p>
+              <p className="text-foreground/60 mb-4 text-sm">
+                Research project focused on realtime speech translation on mobile devices without internet connectivity
+              </p>
+              <div className="flex flex-wrap gap-2 text-xs">
+                <span className="px-2 py-1 bg-foreground/10 border border-foreground/20">Research</span>
+                <span className="px-2 py-1 bg-foreground/10 border border-foreground/20">Cryptography</span>
+                <span className="px-2 py-1 bg-foreground/10 border border-foreground/20">Security</span>
+              </div>
+            </div>
+
+            <div className="border border-foreground/20 p-6">
+              <h3 className="text-xl font-semibold mb-2">
+                <a 
+                  href="https://devpost.com/software/honeycar" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="hover:text-accent transition-colors"
+                >
+                  Patriot Hacks 2023
+                </a>
+              </h3>
+              <p className="text-foreground/80 mb-4">🏆 Hackathon Participant • Innovation Challenge</p>
+              <p className="text-foreground/60 mb-4 text-sm">
+                Competitive hackathon project focused on solving real-world problems through technology. 
+                Rapid prototyping and collaborative development.
+              </p>
+              <div className="flex flex-wrap gap-2 text-xs">
+                <span className="px-2 py-1 bg-foreground/10 border border-foreground/20">Hackathon</span>
+                <span className="px-2 py-1 bg-foreground/10 border border-foreground/20">Prototype</span>
+                <span className="px-2 py-1 bg-foreground/10 border border-foreground/20">Innovation</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Skills Section */}
+        <section className="mb-16">
+          <h2 className="text-2xl font-bold mb-8 uppercase tracking-wider border-b border-foreground/20 pb-2">
+            Technical Skills
+          </h2>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            <div>
+              <h3 className="text-lg font-semibold mb-4 uppercase tracking-wider">Languages</h3>
+              <div className="space-y-2 text-foreground/80">
+                <div>Python</div>
+                <div>JavaScript/TypeScript</div>
+                <div>Java</div>
+                <div>C/C++</div>
+                <div>SQL</div>
+              </div>
+            </div>
+            
+            <div>
+              <h3 className="text-lg font-semibold mb-4 uppercase tracking-wider">Technologies</h3>
+              <div className="space-y-2 text-foreground/80">
+                <div>React/Next.js</div>
+                <div>Node.js</div>
+                <div>Machine Learning</div>
+                <div>AWS/Cloud</div>
+                <div>Git/GitHub</div>
+              </div>
+            </div>
+            
+            <div>
+              <h3 className="text-lg font-semibold mb-4 uppercase tracking-wider">Focus Areas</h3>
+              <div className="space-y-2 text-foreground/80">
+                <div>Full-Stack Development</div>
+                <div>AI/ML Systems</div>
+                <div>Hackathon Development</div>
+                <div>Research Projects</div>
+                <div>Open Source</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Contact Section */}
+        <section>
+          <h2 className="text-2xl font-bold mb-8 uppercase tracking-wider border-b border-foreground/20 pb-2">
+            Contact
+          </h2>
+          
+          <div className="flex flex-wrap gap-6 text-lg">
+            <a 
+              href="mailto:mithran.mohanraj@gmail.com" 
+              className="hover:text-accent transition-colors border-b border-transparent hover:border-foreground uppercase tracking-wider"
+            >
+              Email
+            </a>
+            <a 
+              href="https://github.com/mithranm" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="hover:text-accent transition-colors border-b border-transparent hover:border-foreground uppercase tracking-wider"
+            >
+              GitHub
+            </a>
+            <a 
+              href="https://linkedin.com/in/mithran-mohanraj" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="hover:text-accent transition-colors border-b border-transparent hover:border-foreground uppercase tracking-wider"
+            >
+              LinkedIn
+            </a>
+          </div>
+        </section>
+      </main>
+
+      {/* Footer */}
+      <footer className="border-t border-foreground/20 py-8">
+        <div className="container mx-auto px-4 text-center text-foreground/60 text-sm uppercase tracking-wider">
+          © {new Date().getFullYear()} Mithran Mohanraj
+        </div>
+      </footer>
+    </div>
   );
 }
