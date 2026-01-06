@@ -1,0 +1,23 @@
+{
+    "description": "These are some of the projects I have completed in Undergrad and Hackathons. Some are also just for learning/fun purposes.",
+    "projects": [
+        {
+            "file": "honeycar.png",
+            "title": "HoneyCar",
+            "url": "https://devpost.com/software/honeycar",
+            "description": "PatriotHacks 2023 Winner - Track Sponsored By ArcField. 3D printed rover capable of streaming its own telemetry and environmental data."
+        },
+        {
+            "file": "transitnest.png",
+            "title": "TransitNest",
+            "url": "https://devpost.com/software/transitnest",
+            "description": "PatriotHacks 2024 Winner - Best React App Track Sponsored By Peraton. Application that helps users find housing near public transport in the DMV area."
+        },
+        {
+            "file": "mt-presentation.png",
+            "title": "Machine Translation Capstone",
+            "url": "https://docs.google.com/presentation/d/1wCCqg3uhXbOWWcHWzE-vHjxtsrYBI0KxqZymQIGpXQQ/edit?usp=sharing",
+            "description": "Presentation on my Software Engineering Capstone Project for offline machine translation between English and Simplified Chinese."
+        }
+    ]
+}
