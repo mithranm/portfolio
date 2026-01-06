@@ -1,65 +1,157 @@
-import Image from "next/image";
+"use client";
+
+import { useEffect, useState } from "react";
 
 export default function Home() {
+  const [activeSection, setActiveSection] = useState("home");
+  const [projects, setProjects] = useState<
+    { file: string; url: string; title: string; subtitle: string }[]
+  >([]);
+
+  // 1. Scroll Handler to prevent Hash updates
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  useEffect(() => {
+    const sectionIds = ["home", "projects", "contact"];
+    const updateActive = () => {
+      const midpoint = window.innerHeight * 0.4;
+      let current = "home";
+      sectionIds.forEach((id) => {
+        const element = document.getElementById(id);
+        if (!element) return;
+        const rect = element.getBoundingClientRect();
+        if (rect.top <= midpoint && rect.bottom >= midpoint) {
+          current = id;
+        }
+      });
+      setActiveSection(current);
+    };
+    window.addEventListener("scroll", updateActive, { passive: true });
+    return () => window.removeEventListener("scroll", updateActive);
+  }, []);
+
+  useEffect(() => {
+    const loadProjects = async () => {
+      try {
+        const response = await fetch("/project-thumbnails/links.csv");
+        if (!response.ok) return;
+        const text = await response.text();
+        const rows = text.split(/\r?\n/).map((line) => line.trim()).filter(Boolean);
+        const parsed = rows.map((line) => {
+          const [file, url] = line.split(",");
+          const title = (file || "").replace(/\.[^/.]+$/, "").replace(/[-_]+/g, " ").replace(/\b\w/g, (l) => l.toUpperCase());
+          return { file, url, title, subtitle: "Digital Design & Development" };
+        });
+        setProjects(parsed);
+      } catch {
+        setProjects([]);
+      }
+    };
+    loadProjects();
+  }, []);
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main className="page">
+      <nav className="nav">
+        <a
+          className={`nav-link ${activeSection === "home" ? "is-active" : ""}`}
+          href="#home"
+          onClick={(e) => scrollToSection(e, "home")}
+        >
+          HOME
+        </a>
+        <a
+          className={`nav-link ${activeSection === "projects" ? "is-active" : ""}`}
+          href="#projects"
+          onClick={(e) => scrollToSection(e, "projects")}
+        >
+          PROJECTS
+        </a>
+        <a
+          className={`nav-link ${activeSection === "contact" ? "is-active" : ""}`}
+          href="#contact"
+          onClick={(e) => scrollToSection(e, "contact")}
+        >
+          CONTACT
+        </a>
+      </nav>
+
+      <section className="home-section" id="home">
+        {/* 1. BRANDING: Logo, Name */}
+        <div className="logo-frame">
+          <div className="logo-stack">
+            <span className="logo-circle" aria-hidden="true" />
+            <div className="logo-mark">
+              <img src="/mithran-logo.png" alt="Mithran logo" />
+            </div>
+          </div>
+          <h1 className="name">Mithran Mohanraj</h1>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
+
+        {/* 2. HERO IMAGES */}
+        <div className="hero-row">
+          <div className="hero-card hero-card-accent">
+            <img className="hero-image" src="/hero/one.jpg" alt="Portrait One" />
+          </div>
+          <div className="hero-card">
+            <img className="hero-image" src="/hero/two.jpg" alt="Portrait Two" />
+          </div>
+          <div className="hero-card">
+            <img className="hero-image" src="/hero/three.jpg" alt="Portrait Three" />
+          </div>
+        </div>
+
+        {/* 3. SOCIAL BUTTONS */}
+        <div className="social-row" aria-label="Social links">
+          <a className="button button-social" href="https://github.com/mithranm" target="_blank" rel="noreferrer">
+            <img className="social-icon" src="/github.svg" alt="" />
+            <span>GitHub</span>
           </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
+          <a className="button button-social" href="https://linkedin.com/in/mithran-mohanraj/" target="_blank" rel="noreferrer">
+            <img className="social-icon" src="/linkedin.svg" alt="" />
+            <span>LinkedIn</span>
           </a>
         </div>
-      </main>
-    </div>
+
+        {/* 4. CTA */}
+        <a
+          className="button button-primary"
+          href="#projects"
+          onClick={(e) => scrollToSection(e, "projects")}
+        >
+          View Projects
+        </a>
+      </section>
+
+      <section className="projects" id="projects">
+        <div className="projects-inner">
+          <h2 className="section-title">Selected Projects</h2>
+          <div className="project-grid">
+            {projects.map((p) => (
+              <a className="project-card" key={p.file} href={p.url} target="_blank" rel="noreferrer">
+                <div className="project-thumb">
+                  <img src={`/project-thumbnails/${p.file}`} alt={p.title} />
+                </div>
+                <div className="project-meta">
+                  <p className="project-title">{p.title}</p>
+                  <p className="project-subtitle">{p.subtitle}</p>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="contact" id="contact">
+        <p>Let’s build something thoughtful together.</p>
+        <a className="contact-link" href="mailto:hello@mithran.dev">hello@mithran.dev</a>
+      </section>
+    </main>
   );
 }

@@ -1,0 +1,30 @@
+2026-01-05 15:36:29 [INFO] root:80 - Maxwell logging initialized (level=INFO)
+2026-01-05 15:36:29 [INFO] maxwell.config:353 - Loaded local maxwell config from /home/mithranmohanraj/Documents/portfolio/pyproject.toml
+2026-01-05 15:36:29 [INFO] maxwell.workflows.snapshot:148 - Creating snapshot: output=/home/mithranmohanraj/Documents/portfolio/SNAPSHOT.md, target=[PosixPath('/home/mithranmohanraj/Documents/portfolio')]
+2026-01-05 15:36:29 [DEBUG] maxwell.discovery:301 - Starting file discovery from project root: /home/mithranmohanraj/Documents/portfolio
+2026-01-05 15:36:29 [DEBUG] maxwell.discovery:302 - Effective Include globs: ['app/*']
+2026-01-05 15:36:29 [DEBUG] maxwell.discovery:303 - Exclude globs: []
+2026-01-05 15:36:29 [DEBUG] maxwell.discovery:304 - Explicit excludes: {PosixPath('/home/mithranmohanraj/Documents/portfolio/SNAPSHOT.md')}
+2026-01-05 15:36:29 [DEBUG] maxwell.discovery:310 - Processing include pattern: 'app/*'
+2026-01-05 15:36:29 [DEBUG] maxwell.discovery:345 - Using Path.glob for non-recursive pattern: 'app/*'
+2026-01-05 15:36:29 [DEBUG] maxwell.discovery:369 - Pattern 'app/*' processing took 0.0005 seconds.
+2026-01-05 15:36:29 [DEBUG] maxwell.discovery:372 - Globbing and initial filtering finished in 0.0005 seconds. Total candidates: 4
+2026-01-05 15:36:29 [DEBUG] maxwell.discovery:423 - Discovery complete. Returning 4 files.
+2026-01-05 15:36:29 [INFO] maxwell.workflows.snapshot:157 - Discovered 4 files
+2026-01-05 15:36:29 [INFO] maxwell.workflows.snapshot:212 - Writing snapshot to /home/mithranmohanraj/Documents/portfolio/SNAPSHOT.md
+2026-01-05 15:36:29 [INFO] maxwell.workflows.snapshot:268 - Snapshot created: 4 files (1 binary)
+2026-01-06 12:48:52 [INFO] root:80 - Maxwell logging initialized (level=INFO)
+2026-01-06 12:48:52 [INFO] maxwell.config:353 - Loaded local maxwell config from /home/mithranmohanraj/Documents/portfolio/pyproject.toml
+2026-01-06 12:48:52 [INFO] maxwell.workflows.snapshot:148 - Creating snapshot: output=/home/mithranmohanraj/Documents/portfolio/SNAPSHOT.md, target=[PosixPath('/home/mithranmohanraj/Documents/portfolio')]
+2026-01-06 12:48:52 [DEBUG] maxwell.discovery:301 - Starting file discovery from project root: /home/mithranmohanraj/Documents/portfolio
+2026-01-06 12:48:52 [DEBUG] maxwell.discovery:302 - Effective Include globs: ['app/*']
+2026-01-06 12:48:52 [DEBUG] maxwell.discovery:303 - Exclude globs: []
+2026-01-06 12:48:52 [DEBUG] maxwell.discovery:304 - Explicit excludes: {PosixPath('/home/mithranmohanraj/Documents/portfolio/SNAPSHOT.md')}
+2026-01-06 12:48:52 [DEBUG] maxwell.discovery:310 - Processing include pattern: 'app/*'
+2026-01-06 12:48:52 [DEBUG] maxwell.discovery:345 - Using Path.glob for non-recursive pattern: 'app/*'
+2026-01-06 12:48:52 [DEBUG] maxwell.discovery:369 - Pattern 'app/*' processing took 0.0005 seconds.
+2026-01-06 12:48:52 [DEBUG] maxwell.discovery:372 - Globbing and initial filtering finished in 0.0005 seconds. Total candidates: 4
+2026-01-06 12:48:52 [DEBUG] maxwell.discovery:423 - Discovery complete. Returning 4 files.
+2026-01-06 12:48:52 [INFO] maxwell.workflows.snapshot:157 - Discovered 4 files
+2026-01-06 12:48:52 [INFO] maxwell.workflows.snapshot:212 - Writing snapshot to /home/mithranmohanraj/Documents/portfolio/SNAPSHOT.md
+2026-01-06 12:48:52 [INFO] maxwell.workflows.snapshot:268 - Snapshot created: 4 files (1 binary)
