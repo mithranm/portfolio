@@ -1,6 +1,8 @@
+# Mithran Mohanraj's Portfolio
+
 Yes, this is another basic Next.js application. I could have deployed it on Vercel but Cloudflare Pages is a lot more cost effective.
 
-I worked a lot harder on the aesthetic decisions than the actual front end design, and I must say i'm quite proud of how it turned out.
+I worked a lot harder on the aesthetic decisions than the actual front end design, and I must say I am quite proud of how it turned out.
 
 ## Getting Started
 

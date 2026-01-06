@@ -18,6 +18,12 @@
             "title": "Machine Translation Capstone",
             "url": "https://docs.google.com/presentation/d/1wCCqg3uhXbOWWcHWzE-vHjxtsrYBI0KxqZymQIGpXQQ/edit?usp=sharing",
             "description": "Presentation on my Software Engineering Capstone Project for offline machine translation between English and Simplified Chinese."
+        },
+        {
+            "file": "portfolio-source.png",
+            "title": "Portfolio Source Code",
+            "url": "https://github.com/mithranm/portfolio",
+            "description": "Source code for my personal portfolio website built using Next.js and hosted on CloudFlare pages."
         }
     ]
 }
