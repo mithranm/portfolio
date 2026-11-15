@@ -121,13 +121,13 @@ export default function Home() {
 
         <div className="hero-row">
           <div className="hero-card hero-card-accent">
-            <img className="hero-image" src="/hero/one.jpg" alt="Portrait One" />
+            <img className="hero-image" src="/hero/one.png" alt="Portrait One" />
           </div>
           <div className="hero-card">
-            <img className="hero-image" src="/hero/two.jpg" alt="Portrait Two" />
+            <img className="hero-image" src="/hero/two.png" alt="Portrait Two" />
           </div>
           <div className="hero-card">
-            <img className="hero-image" src="/hero/three.jpg" alt="Portrait Three" />
+            <img className="hero-image" src="/hero/three.png" alt="Portrait Three" />
           </div>
         </div>
 
