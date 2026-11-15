@@ -24,6 +24,16 @@ You can start editing the page by modifying `app/page.tsx`. The page auto-update
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
+## Blog
+
+Add one folder per post to `public/blog/`, with the post content in
+`public/blog/<slug>/prose.html` (for example, `public/blog/my-first-post/prose.html`
+is available at `/blog/my-first-post`). Keep post images and other assets in that
+folder and reference them with relative URLs, such as `images/photo.png`. The first
+`<h1>` is used as the post title; if there is no `<h1>`, the `<title>` is used, then
+the folder name. Existing root-level `.html` posts are also supported. Blog pages
+are generated when you build the site.
+
 ## Learn More
 
 To learn more about Next.js, take a look at the following resources:

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Link from "next/link";
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState("home");
@@ -95,6 +96,9 @@ export default function Home() {
         >
           PROJECTS
         </a>
+        <Link className="nav-link" href="/blog">
+          BLOG
+        </Link>
         <a
           className={`nav-link ${activeSection === "contact" ? "is-active" : ""}`}
           href="#contact"
@@ -185,7 +189,7 @@ export default function Home() {
         </div>
 
         <div className="contact-content-large">
-          <h2 className="contact-label">Let's Build Something</h2>
+          <h2 className="contact-label">Let&apos;s Build Something</h2>
 
           <button
             className="contact-email-large"
